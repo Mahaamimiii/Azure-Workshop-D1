@@ -1,0 +1,25 @@
+# Steps to Create a Virtual Machine (VM) and Attach a Network Interface (NIC) in Azure #
+Define the Variables:
+
+Defining the necessary variables for the resource group, location, VM name, NIC name, virtual network name, subnet name, public IP name, and the private IP for the NIC. These variables store values that are later used to create resources.
+Create the Resource Group:
+
+The script uses the New-AzResourceGroup command to create a resource group in Azure. A resource group is a container that holds all related resources, such as the VM, NIC, and public IP, in one place.
+Create a Virtual Network (VNet) and Subnet:
+
+A virtual network (VNet) is created.
+Inside the VNet, a subnet is created with the address range 10.0.0.0/24, where the NICs for the VM will reside. This subnet configuration is passed as a parameter to the virtual network creation command.
+Create a Public IP Address:
+
+Then a public IP address is given. This public IP address will be associated with the VM, allowing it to be accessed from the internet.
+The public IP is configured with the Dynamic allocation method, meaning the IP address is assigned dynamically and can change when the VM is restarted (as opposed to a static IP, which stays the same).
+Create the Network Interface Card (NIC):
+
+The script uses New-AzNetworkInterface to create a NIC (MyVMNIC). The NIC is associated with the previously created VNet and subnet.
+The NIC is assigned a IP address (10.0.0.4), which allows the VM to communicate internally within the VNet.
+The NIC is also associated with the previously created public IP address (MyPublicIP), enabling external connectivity.
+Create the Virtual Machine and Attach the NIC:
+
+The New-AzVM cmdlet is used to create the virtual machine (MyVM). The VM is created in the specified resource group and location.
+The NIC created in the previous step is attached to the VM during its creation.
+The VM is created with an Ubuntu operating system (UbuntuLTS) in this example. The script prompts you for credentials (username and password) to be used for accessing the VM.
